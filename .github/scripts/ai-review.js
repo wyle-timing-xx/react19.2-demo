@@ -3,7 +3,13 @@ import { Octokit } from "@octokit/rest";
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
-const prNumber = process.env.GITHUB_REF.match(/\d+$/)?.[0];
+const prNumber = process.env.PR_NUMBER ||
+                 process.env.GITHUB_REF?.match(/refs\/pull\/(\d+)\/merge/)?.[1];
+
+if (!prNumber) {
+  console.error("❌ 无法识别 Pull Request 编号，可能不是从 PR 事件触发。");
+  process.exit(1);
+}
 
 async function main() {
   console.log("🚀 Running AI review with DeepSeek...");
