@@ -7,7 +7,7 @@ const ref = process.env.GITHUB_REF;
 const prNumber = match ? match[1] : github.context.payload.pull_request?.number;
 
 if (!prNumber) {
-  console.error("❌ 无法识别 Pull Request 编号，可能不是从 PR 事件触发。");
+  console.error("❌ 无法识别 Pull Request 编号，可能不是从 PR 事件触发。22");
 	console.log(ref)
   process.exit(1);
 }
