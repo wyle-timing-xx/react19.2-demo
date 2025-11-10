@@ -14,11 +14,6 @@ function parsePrNumber() {
   if (fromRefMatch && fromRefMatch[1]) return fromRefMatch[1];
 
   if (process.env.PR_NUMBER) return String(process.env.PR_NUMBER);
-
-  // Some environments may set GITHUB_REF to a branch or tag. Try a generic trailing digits match as last resort.
-  const trailing = ref.match(/(\d+)$/)?.[1];
-  if (trailing) return trailing;
-
   return null;
 }
 
