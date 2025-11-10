@@ -34,7 +34,7 @@ jobs:
         run: npx eslint ./src --ext .ts,.tsx
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v5.0.0
+        uses: SonarSource/sonarqube-scan-action@2f77a1ec69fb1d595b06f35ab27e97605bdef703
         with:
           args: >
             -Dsonar.projectKey=wyle-timing-xx_react19.2-demo
