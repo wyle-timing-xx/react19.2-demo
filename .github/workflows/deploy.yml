@@ -33,6 +33,11 @@ jobs:
       - name: Run ESLint
         run: npx eslint ./src --ext .ts,.tsx
 
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   build:
     runs-on: ubuntu-latest
     needs: quality-gate
