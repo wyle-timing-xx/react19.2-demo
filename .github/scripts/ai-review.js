@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Octokit } from "@octokit/rest";
 import github from "@actions/github";
-import promptZh from "./prompt_zh";
+import promptZh from "./prompt_zh.js";
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
 const ref = process.env.GITHUB_REF;
