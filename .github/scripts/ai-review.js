@@ -1,13 +1,15 @@
 import axios from "axios";
 import { Octokit } from "@octokit/rest";
-
+const core = require('@actions/core');
+const github = require('@actions/github');
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
-const prNumber = process.env.PR_NUMBER ||
-                 process.env.GITHUB_REF?.match(/refs\/pull\/(\d+)\/merge/)?.[1];
+const ref = process.env.GITHUB_REF;
+const prNumber = match ? match[1] : github.context.payload.pull_request?.number;
 
 if (!prNumber) {
   console.error("❌ 无法识别 Pull Request 编号，可能不是从 PR 事件触发。");
+	console.log(ref)
   process.exit(1);
 }
 
