@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Octokit } from "@octokit/rest";
-const core = require('@actions/core');
-const github = require('@actions/github');
+import github from "@actions/github";
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
 const ref = process.env.GITHUB_REF;
