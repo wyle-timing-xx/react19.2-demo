@@ -1,5 +1,8 @@
 import fs from "fs";
+import path from 'path';
 
-const promptZh = fs.readFileSync(".github/scripts/prompt_zh.txt", "utf-8");
+// 读取提示词
+const promptPath = path.resolve('.github/prompts/prompt_zh.txt');
+const promptZh = fs.readFileSync(promptPath, "utf-8");
 
 export default promptZh.toString();
