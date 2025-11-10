@@ -2,6 +2,7 @@ import axios from "axios";
 import { Octokit } from "@octokit/rest";
 import github from "@actions/github";
 import promptZh from "./prompt_zh.js";
+import promptEN from "./prompt_en.js";
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
 const ref = process.env.GITHUB_REF;
@@ -27,9 +28,12 @@ async function main() {
   const diffContent = files
     .map((f) => `### ${f.filename}\n\`\`\`diff\n${f.patch?.slice(0, 4000) || ""}\n\`\`\``)
     .join("\n\n");
-
+	let promptLang = promptZh;
+	if (process.env.LANG === 'en') {
+		promptLang = promptEN
+	}
   const prompt = `
-${promptZh}
+${promptLang}
 ${diffContent}
 `;
 
