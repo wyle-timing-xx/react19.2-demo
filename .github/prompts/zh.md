@@ -1,13 +1,5 @@
-好的 ✅
-下面是**完整中文版版本的 PR 代码检测 AI Agent 提示词模板**，你可以直接用在 System / Context / Task Prompt 中。
-这一版是为「在 Pull Request 时自动执行代码检测」设计的，适合放进 GitHub Action 或你自己的智能体调用逻辑中（DeepSeek / GPT / Claude 都可用）。
-
----
-
-# 🚀 AI Code Review Agent 中文版提示词模板
-
----
-
+## 检查范围, 重点!!!!
+你只允许检查除了 `git` 相关的文件外的所有文件!!!!
 ## 🧠 一、系统角色定义（System Prompt）
 
 你是一名资深的全栈代码审查工程师（Code Review Engineer），长期从事自动化 PR 审查与工程质量保障工作。
