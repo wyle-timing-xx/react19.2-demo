@@ -1,25 +1,15 @@
 import axios from "axios";
 import { Octokit } from "@octokit/rest";
-
+const core = require('@actions/core');
+const github = require('@actions/github');
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-const [owner, repo] = process.env.GITHUB_REPOSITORY ? process.env.GITHUB_REPOSITORY.split("/") : [undefined, undefined];
+const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
+const ref = process.env.GITHUB_REF;
+const prNumber = match ? match[1] : github.context.payload.pull_request?.number;
 
-// Try to determine PR number safely.
-// 1) If running in a pull_request event, GITHUB_REF often looks like: refs/pull/123/merge
-// 2) Workflows can also pass the PR number explicitly (see ai-review.yml uses PR_NUMBER env)
-// We'll prefer parsing GITHUB_REF, but fall back to PR_NUMBER env if needed, and validate.
-function parsePrNumber() {
-  const ref = process.env.GITHUB_REF || "";
-  const fromRefMatch = ref.match(/refs\/pull\/(\d+)\/?.*/);
-  if (fromRefMatch && fromRefMatch[1]) return fromRefMatch[1];
-
-  if (process.env.PR_NUMBER) return String(process.env.PR_NUMBER);
-  return null;
-}
-
-const prNumber = parsePrNumber();
 if (!prNumber) {
-  console.error("❌ Could not determine PR number. Ensure this action runs on a pull_request event or pass PR_NUMBER env.");
+  console.error("❌ 无法识别 Pull Request 编号，可能不是从 PR 事件触发。");
+	console.log(ref)
   process.exit(1);
 }
 
