@@ -5,4 +5,4 @@ import path from 'path';
 const promptPath = path.resolve('.github/prompts/zh.md');
 const promptZh = fs.readFileSync(promptPath, "utf-8");
 
-export default promptZh.toString();
+export default promptZh;

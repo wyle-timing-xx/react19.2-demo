@@ -80,7 +80,7 @@ PR 环境上下文：
 
 ```json
 {
-  "pr": <pr_number>,
+  "pr": "<此次 PR 的 number>",
   "summary": "<总体摘要，一句话说明本次检测结果>",
   "overall_score": <0-100>,
   "mode": "full | quick",
