@@ -60,10 +60,10 @@ ${diffContent}
     owner,
     repo,
     issue_number: prNumber,
-    body: `🤖 **DeepSeek AI 审查报告**\n\n${review}`,
+    body: `🤖 **AI 审查报告 **\n\n${review}`,
   });
 
-  console.log("✅ DeepSeek AI review completed!");
+  console.log("✅ AI review completed!");
 }
 
 main().catch((err) => {
