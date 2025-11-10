@@ -4,6 +4,7 @@ import github from "@actions/github";
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
 const ref = process.env.GITHUB_REF;
+const match = ref.match(/refs\/pull\/(\d+)\/merge/);
 const prNumber = match ? match[1] : github.context.payload.pull_request?.number;
 
 if (!prNumber) {
