@@ -32,21 +32,21 @@ jobs:
 
       - name: Run ESLint
         run: npx eslint ./src --ext .ts,.tsx
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@2f77a1ec69fb1d595b06f35ab27e97605bdef703
-        with:
-          args: >
-            -Dsonar.projectKey=wyle-timing-xx_react19.2-demo
-            -Dsonar.organization=wyle-timing-xx
-            -Dsonar.sources=src
-            -Dsonar.tests=src
-            -Dsonar.test.inclusions=**/*.test.ts,**/*.test.tsx,**/*.spec.ts,**/*.spec.tsx
-            -Dsonar.coverage.exclusions=**/*.test.ts,**/*.test.tsx,**/*.spec.ts,**/*.spec.tsx
-            -Dsonar.scm.disabled=false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      # sonar 的自动分析 和 GitHub ci/cd sonar 配置冲突问题, 付费用户才能解决
+      # - name: SonarCloud Scan
+      #   uses: SonarSource/sonarqube-scan-action@2f77a1ec69fb1d595b06f35ab27e97605bdef703
+      #   with:
+      #     args: >
+      #       -Dsonar.projectKey=wyle-timing-xx_react19.2-demo
+      #       -Dsonar.organization=wyle-timing-xx
+      #       -Dsonar.sources=src
+      #       -Dsonar.tests=src
+      #       -Dsonar.test.inclusions=**/*.test.ts,**/*.test.tsx,**/*.spec.ts,**/*.spec.tsx
+      #       -Dsonar.coverage.exclusions=**/*.test.ts,**/*.test.tsx,**/*.spec.ts,**/*.spec.tsx
+      #       -Dsonar.scm.disabled=false
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   build:
     runs-on: ubuntu-latest
     needs: quality-gate
