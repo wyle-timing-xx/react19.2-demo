@@ -10,4 +10,5 @@ export default defineConfig({
       },
     }),
   ],
+  base: "/react19.2-demo/"
 })
