@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Octokit } from "@octokit/rest";
 import github from "@actions/github";
+import promptZh from "./prompt_zh";
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
 const ref = process.env.GITHUB_REF;
@@ -28,10 +29,7 @@ async function main() {
     .join("\n\n");
 
   const prompt = `
-你是一名资深代码审查专家，请帮我分析以下代码改动，指出：
-1. 潜在逻辑/安全风险
-2. 可优化的地方
-3. 总体质量评分
+${promptZh}
 ${diffContent}
 `;
 
