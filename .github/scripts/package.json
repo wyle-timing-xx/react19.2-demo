@@ -1,0 +1,12 @@
+{
+  "name": "ai-review-scripts",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Dependencies for CI ai-review scripts",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "@octokit/rest": "^19.0.7",
+    "openai": "^4.0.0"
+  }
+}
